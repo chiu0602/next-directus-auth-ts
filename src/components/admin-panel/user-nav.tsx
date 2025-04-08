@@ -2,6 +2,8 @@
 
 import Link from "next/link"
 import { LayoutGrid, LogOut, User } from "lucide-react"
+import { createAvatar } from "@dicebear/core"
+import { thumbs } from "@dicebear/collection"
 
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -29,6 +31,11 @@ export function UserNav() {
     ?.map((palabra) => palabra.charAt(0).toUpperCase())
     ?.join("")
 
+  const avatar = createAvatar(thumbs, {
+    seed: session?.user?.name || undefined,
+  })
+  const avatarUri = avatar.toDataUri()
+
   return (
     <DropdownMenu>
       <TooltipProvider disableHoverableContent>
@@ -40,7 +47,7 @@ export function UserNav() {
                 className="relative h-8 w-8 rounded-full"
               >
                 <Avatar className="h-8 w-8">
-                  <AvatarImage src="#" alt="Avatar" />
+                  <AvatarImage src={avatarUri} alt="Avatar" />
                   <AvatarFallback className="bg-transparent">
                     {avatarLetters}
                   </AvatarFallback>
