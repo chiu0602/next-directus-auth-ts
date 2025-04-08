@@ -63,7 +63,7 @@ cd your-project
 Install dependencies:
 
 ```bash
-npm run install
+npm install
 ```
 
 Prepare husky:
